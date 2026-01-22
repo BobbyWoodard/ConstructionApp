@@ -13,8 +13,6 @@ export default function AppTabs({ onReload }) {
 
   const tabs = [
     { label: 'Dashboard', key: 'Dashboard' },
-    { label: 'Scan QR', key: 'Scan' },
-    { label: 'Print QR Codes', key: 'Print' },
     { label: 'Analytics', key: 'Analytics' },
     { label: 'Manage', key: 'Manage' },
   ];
@@ -92,28 +90,6 @@ export default function AppTabs({ onReload }) {
                 </div>
             </section>
         </section>
-      )}
-
-      {activeTab === 'Scan' && (
-        <ScanQR
-          onResult={async (scannedId) => {
-            const { data, error } = await supabase
-              .from('equipment')
-              .select('*')
-              .eq('id', scannedId)
-              .single();
-
-            if (error || !data) {
-              console.error('Equipment not found:', error);
-              // Show message to user
-              return;
-            }
-
-            // You now have the equipment data, show it
-            console.log('Scanned equipment:', data);
-            // Optionally navigate or update state
-          }}
-        />
       )}
 
       {activeTab === 'Print' && (
