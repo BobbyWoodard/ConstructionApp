@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 // import CheckOut from './Checkout';
 import ScanQR from './ScanQR';
 import PrintQRCodes from './PrintQRCodes';
+import UpArrowButton from '../images/UpArrowButton.png'
+import DownArrowButton from '../images/DownArrowButton.png'
 
 export default function AppTabs({ onReload }) {
   const [activeTab, setActiveTab] = useState('Dashboard');
@@ -23,7 +25,7 @@ export default function AppTabs({ onReload }) {
             {tabs.map((tab) => (
             <button
                 key={tab.key}
-                className={`py-2 px-4 font-semibold rounded-t-md transition whitespace-nowrap ${
+                className={`py-2 px-4 font-semibold rounded-md transition whitespace-nowrap ${
                 activeTab === tab.key
                     ? 'bg-blue-600 text-white'
                     : 'bg-blue-300 text-black hover:bg-blue-600 hover:text-white'
@@ -39,12 +41,24 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-6 rounded-2xl shadow-lg">
-            <section>
-            </section> 
-            {/* Split these in half vertically*/}
-            <section className="py-16">
-                
+        <section className="bg-white p-2 rounded-2xl shadow-lg">
+            <section className="py-4">
+                <div className="grid grid-cols-2 gap-y-12 max-w-6xl mx-auto place-items-center">
+                  <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
+                    <img
+                      src={UpArrowButton}
+                      alt="Button"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                  <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
+                    <img
+                      src={DownArrowButton}
+                      alt="Button"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                </div>
             </section>
         </section>
       )}
