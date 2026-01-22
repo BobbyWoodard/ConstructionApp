@@ -9,13 +9,31 @@ import DownArrowButton from '../images/DownArrowButton.png'
 
 export default function AppTabs({ onReload }) {
   const [activeTab, setActiveTab] = useState('Dashboard');
+  const [scanning, setScanning] = useState(false);
 
   const tabs = [
     { label: 'Dashboard', key: 'Dashboard' },
     { label: 'Scan QR', key: 'Scan' },
     { label: 'Print QR Codes', key: 'Print' },
+    { label: 'Analytics', key: 'Analytics' },
     { label: 'Manage', key: 'Manage' },
   ];
+
+  const handleScanResult = async (scannedId) => {
+    setScanning(false); // stop scanning when a code is found
+    const { data, error } = await supabase
+      .from('equipment')
+      .select('*')
+      .eq('id', scannedId)
+      .single();
+
+    if (error || !data) {
+      console.error('Equipment not found:', error);
+      return;
+    }
+
+    console.log('Scanned equipment:', data);
+  };
 
   return (
     <div>
@@ -44,13 +62,26 @@ export default function AppTabs({ onReload }) {
         <section className="bg-white p-2 rounded-2xl shadow-lg">
             <section className="py-4">
                 <div className="grid grid-cols-2 gap-y-12 max-w-6xl mx-auto place-items-center">
-                  <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
-                    <img
-                      src={UpArrowButton}
-                      alt="Button"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
+                  <div className="relative w-80 h-80">
+                    {scanning && (
+                      <div className="absolute inset-0 rounded-full overflow-hidden z-10">
+                        <ScanQR 
+                          onResult={handleScanResult} 
+                          qrBoxSize={320}
+                        />
+                      </div>
+                    )}
+                    <button
+                      onClick={() => setScanning(true)}
+                      className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform"
+                    >
+                      <img
+                        src={UpArrowButton}
+                        alt="Up Arrow Scan Button"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  </div>
                   <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
                     <img
                       src={DownArrowButton}
