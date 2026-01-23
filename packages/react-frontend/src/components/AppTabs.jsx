@@ -57,9 +57,21 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-2 rounded-2xl shadow-lg">
+        <section className="bg-white p-2 rounded-2xl shadow-lg max-w-6xl mx-auto">
             <section className="py-4">
-                <div className="grid grid-cols-2 gap-y-12 max-w-6xl mx-auto place-items-center">
+              {/* Title & subtitle */}
+              <div className="text-center mb-12">
+                <h1 className="text-4xl font-bold text-blue-700">
+                  Equipment Tracking
+                </h1>
+                <p className="text-lg text-gray-600 mt-2">
+                  Scan equipment to check in or check out
+                </p>
+              </div>
+
+              <div className="flex justify-center gap-32">
+
+                <div className="flex flex-col items-center">
                   <div className="relative w-80 h-80">
                     {scanning && (
                       <div className="absolute inset-0 rounded-full overflow-hidden z-10">
@@ -75,19 +87,29 @@ export default function AppTabs({ onReload }) {
                     >
                       <img
                         src={UpArrowButton}
-                        alt="Up Arrow Scan Button"
+                        alt="Check In"
                         className="w-full h-full object-cover"
                       />
                     </button>
                   </div>
+                  <span className="mt-4 text-xl font-semibold text-gray-700">
+                    Check In
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center">
                   <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
                     <img
                       src={DownArrowButton}
-                      alt="Button"
+                      alt="Check Out"
                       className="w-full h-full object-cover"
                     />
                   </button>
+                  <span className="mt-4 text-xl font-semibold text-gray-700">
+                    Check Out
+                  </span>
                 </div>
+              </div>
             </section>
         </section>
       )}
