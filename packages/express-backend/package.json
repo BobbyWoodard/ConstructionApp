@@ -1,0 +1,18 @@
+{
+  "name": "express-backend",
+  "version": "1.0.0",
+  "description": "Express backend for construction app",
+  "license": "ISC",
+  "author": "Tyler Hickerson",
+  "type": "commonjs",
+  "main": "backend.js",
+  "scripts": {
+    "dev": "nodemon backend.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
