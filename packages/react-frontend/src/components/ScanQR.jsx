@@ -18,38 +18,44 @@ function ScanQR({ onResult, qrBoxSize }){
         const container = document.getElementById(elementId);
         if (!container) return;
 
-        const scanner = new Html5Qrcode(elementId);
+        (async () => {
+            const { Html5Qrcode } = await import('html5-qrcode');
 
-        scanner
-            .start(
-                { facingMode: 'environment' },
-                { fps: 10, qrbox: qrBoxSize, aspectRatio: 1 },
-                async (decodedText) => {
-                    try {
-                        const id = BigInt(decodedText);
-                        onResult(id.toString());
-                    } catch (e) {
-                        console.error('Scanned QR code is not a valid bigint:', decodedText);
-                        setErrorMsg('Invalid QR code scanned, not a valid equipment ID.');
+            const scanner = new Html5Qrcode(elementId);
+
+            scanner
+                .start(
+                    { facingMode: 'environment' },
+                    { fps: 10, qrbox: qrBoxSize, aspectRatio: 1 },
+                    async (decodedText) => {
+                        try {
+                            const id = BigInt(decodedText);
+                            onResult(id.toString());
+                        } catch (e) {
+                            console.error('Scanned QR code is not a valid bigint:', decodedText);
+                            setErrorMsg('Invalid QR code scanned, not a valid equipment ID.');
+                        }
+
+                        // const { data, error } = await supabase
+                        //     .from('equipment')
+                        //     .select('*')
+                        //     .eq('id', id.toString())
+                        //     .single();
+                    },
+                    (scanError) => {
+                    // Optionally log scan errors (like decode failures)
                     }
-
-                    // const { data, error } = await supabase
-                    //     .from('equipment')
-                    //     .select('*')
-                    //     .eq('id', id.toString())
-                    //     .single();
-                },
-                (scanError) => {
-                // Optionally log scan errors (like decode failures)
-                }
-            )
-            .catch((err) => {
-                console.error('QR scanner failed to start:', err);
-                setErrorMsg('Failed to start camera for scanning.');
-            });
+                )
+                .catch((err) => {
+                    console.error('QR scanner failed to start:', err);
+                    setErrorMsg('Failed to start camera for scanning.');
+                });
+        })();
 
         return () => {
-            scanner.stop().then(() => scanner.clear()).catch(() => {});
+            if(scanner){
+                scanner.stop().then(() => scanner.clear()).catch(() => {});
+            }
         };
     }, [qrBoxSize, onResult]);
 
