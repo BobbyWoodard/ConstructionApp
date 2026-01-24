@@ -37,18 +37,18 @@ function MyApp() {
     <div className="min-h-screen bg-blue-50 flex flex-col">
       
       {/* Header */}
-      <header className="bg-blue-700 text-white p-4 text-center text-3xl font-bold shadow-md flex justify-center items-center gap-2">
+      <header className="bg-blue-700 text-white p-2 sm:p-4 text-center text-3xl font-bold shadow-md flex justify-center items-center gap-2">
         Construction Dashboard
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto p-6 space-y-10">
+      <main className="flex-grow container mx-auto p-1 sm:p-6 space-y-10">
 
         {/* Logout Button */}
         <div className="flex justify-end">
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition"
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold sm:py-2 px-4 rounded-lg transition"
           >
             Logout
           </button>
@@ -59,7 +59,7 @@ function MyApp() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-blue-800 text-white p-4 text-center text-sm">
+      <footer className="bg-blue-800 text-white p-2 sm:p-4 text-center text-sm">
         © 2026 Construction. All rights reserved.
       </footer>
 

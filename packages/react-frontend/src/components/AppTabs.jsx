@@ -57,8 +57,8 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-1 sm:p-2 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
-            <section className="py-1 sm:py-4">
+        <section className="bg-white p-0 sm:p-2 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
+            <section className="py-0 sm:py-4">
               {/* Title & subtitle */}
               <div className="hidden sm:block text-center mb-6 sm:mb-10">
                 <h1 className="text-4xl font-bold text-blue-700">
