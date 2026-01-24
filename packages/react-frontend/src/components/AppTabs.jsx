@@ -36,7 +36,7 @@ export default function AppTabs({ onReload }) {
   return (
     <div>
       {/* Tab Navigation */}
-      <div className="overflow-x-auto no-scrollbar p-1 mb-2 sm:mb-6 mt-0 sm:mt-4 border-b border-gray-300">
+      <div className="overflow-x-auto no-scrollbar p-1 mb-1 sm:mb-6 mt-0 sm:mt-4 border-b border-gray-300">
         <div className="flex gap-4">
             {tabs.map((tab) => (
             <button
@@ -57,7 +57,7 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-0 sm:p-2 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
+        <section className="bg-white p-0 sm:p-2 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-start justify-center">
             <section className="py-0 sm:py-4">
               {/* Title & subtitle */}
               <div className="hidden sm:block text-center mb-6 sm:mb-10">
@@ -79,7 +79,7 @@ export default function AppTabs({ onReload }) {
                 "
               >
                 {/* Check In */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col-reverse sm:flex-col items-center">
                   <div
                     className="
                       relative
@@ -115,7 +115,7 @@ export default function AppTabs({ onReload }) {
                     </button>
                   </div>
 
-                  <span className="mt-2 sm:mt-4 text-base sm:text-xl font-semibold text-gray-700">
+                  <span className="mb-2 sm:mb-0 mt-0 sm:mt-4 text-base sm:text-xl font-semibold text-gray-700">
                     Check In
                   </span>
                 </div>
@@ -124,8 +124,9 @@ export default function AppTabs({ onReload }) {
                 <div className="flex flex-col items-center">
                   <div
                     className="
-                      w-40 h-40
-                      sm:w-56 sm:h-56
+                      relative
+                      w-52 h-52
+                      sm:w-60 sm:h-60
                       md:w-72 md:h-72
                       lg:w-80 lg:h-80
                       rounded-full

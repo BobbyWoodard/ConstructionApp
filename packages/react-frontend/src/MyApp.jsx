@@ -42,13 +42,13 @@ function MyApp() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto p-1 sm:p-6 space-y-10">
+      <main className="flex-grow container mx-auto p-1 sm:p-6 space-y-2 sm:space-y-10">
 
         {/* Logout Button */}
         <div className="flex justify-end">
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white font-semibold sm:py-2 px-4 rounded-lg transition"
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition"
           >
             Logout
           </button>
