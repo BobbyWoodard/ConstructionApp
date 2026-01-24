@@ -36,7 +36,7 @@ export default function AppTabs({ onReload }) {
   return (
     <div>
       {/* Tab Navigation */}
-      <div className="overflow-x-auto no-scrollbar p-1 mb-6 border-b border-gray-300">
+      <div className="overflow-x-auto no-scrollbar p-1 mb-2 sm:mb-6 mt-0 sm:mt-4 border-b border-gray-300">
         <div className="flex gap-4">
             {tabs.map((tab) => (
             <button
@@ -57,8 +57,8 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-3 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
-            <section className="py-2 sm:py-4">
+        <section className="bg-white p-1 sm:p-2 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
+            <section className="py-1 sm:py-4">
               {/* Title & subtitle */}
               <div className="hidden sm:block text-center mb-6 sm:mb-10">
                 <h1 className="text-4xl font-bold text-blue-700">
@@ -74,7 +74,7 @@ export default function AppTabs({ onReload }) {
                   grid
                   grid-cols-1
                   md:grid-cols-2
-                  gap-6 sm:gap-10 md:gap-24
+                  gap-4 sm:gap-8 md:gap-24
                   place-items-center
                 "
               >
@@ -115,7 +115,7 @@ export default function AppTabs({ onReload }) {
                     </button>
                   </div>
 
-                  <span className="mt-4 text-xl font-semibold text-gray-700">
+                  <span className="mt-2 sm:mt-4 text-base sm:text-xl font-semibold text-gray-700">
                     Check In
                   </span>
                 </div>
