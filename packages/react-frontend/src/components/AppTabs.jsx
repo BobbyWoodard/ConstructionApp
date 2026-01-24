@@ -57,10 +57,10 @@ export default function AppTabs({ onReload }) {
 
       {/* Tab Content */}
       {activeTab === 'Dashboard' && (
-        <section className="bg-white p-2 rounded-2xl shadow-lg max-w-6xl mx-auto">
-            <section className="py-4">
+        <section className="bg-white p-3 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
+            <section className="py-2 sm:py-4">
               {/* Title & subtitle */}
-              <div className="text-center mb-12">
+              <div className="text-center mb-6 sm:mb-10">
                 <h1 className="text-4xl font-bold text-blue-700">
                   Equipment Tracking
                 </h1>
@@ -74,8 +74,7 @@ export default function AppTabs({ onReload }) {
                   grid
                   grid-cols-1
                   md:grid-cols-2
-                  gap-12
-                  md:gap-24
+                  gap-6 sm:gap-10 md:gap-24
                   place-items-center
                 "
               >
@@ -84,8 +83,8 @@ export default function AppTabs({ onReload }) {
                   <div
                     className="
                       relative
-                      w-40 h-40
-                      sm:w-56 sm:h-56
+                      w-52 h-52
+                      sm:w-60 sm:h-60
                       md:w-72 md:h-72
                       lg:w-80 lg:h-80
                       rounded-full
