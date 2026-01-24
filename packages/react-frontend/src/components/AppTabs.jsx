@@ -69,21 +69,44 @@ export default function AppTabs({ onReload }) {
                 </p>
               </div>
 
-              <div className="flex justify-center gap-32">
-
+              <div
+                className="
+                  grid
+                  grid-cols-1
+                  md:grid-cols-2
+                  gap-12
+                  md:gap-24
+                  place-items-center
+                "
+              >
+                {/* Check In */}
                 <div className="flex flex-col items-center">
-                  <div className="relative w-80 h-80">
+                  <div
+                    className="
+                      relative
+                      w-40 h-40
+                      sm:w-56 sm:h-56
+                      md:w-72 md:h-72
+                      lg:w-80 lg:h-80
+                      rounded-full
+                      overflow-hidden
+                      shadow-lg
+                      hover:scale-105
+                      transition-transform
+                    "
+                  >
                     {scanning && (
-                      <div className="absolute inset-0 rounded-full overflow-hidden z-10">
-                        <ScanQR 
-                          onResult={handleScanResult} 
-                          qrBoxSize={320}
+                      <div className="absolute inset-0 z-10 rounded-full overflow-hidden">
+                        <ScanQR
+                          onResult={handleScanResult}
+                          qrBoxSize={Math.min(200, window.innerWidth * 0.5)}
                         />
                       </div>
                     )}
+
                     <button
                       onClick={() => setScanning(true)}
-                      className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform"
+                      className="w-full h-full rounded-full"
                     >
                       <img
                         src={UpArrowButton}
@@ -92,19 +115,36 @@ export default function AppTabs({ onReload }) {
                       />
                     </button>
                   </div>
+
                   <span className="mt-4 text-xl font-semibold text-gray-700">
                     Check In
                   </span>
                 </div>
 
+                {/* Check Out */}
                 <div className="flex flex-col items-center">
-                  <button className="w-80 h-80 rounded-full overflow-hidden bg-center shadow-lg hover:scale-105 transition-transform">
-                    <img
-                      src={DownArrowButton}
-                      alt="Check Out"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
+                  <div
+                    className="
+                      w-40 h-40
+                      sm:w-56 sm:h-56
+                      md:w-72 md:h-72
+                      lg:w-80 lg:h-80
+                      rounded-full
+                      overflow-hidden
+                      shadow-lg
+                      hover:scale-105
+                      transition-transform
+                    "
+                  >
+                    <button className="w-full h-full rounded-full">
+                      <img
+                        src={DownArrowButton}
+                        alt="Check Out"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  </div>
+
                   <span className="mt-4 text-xl font-semibold text-gray-700">
                     Check Out
                   </span>
