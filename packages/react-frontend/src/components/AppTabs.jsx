@@ -60,7 +60,7 @@ export default function AppTabs({ onReload }) {
         <section className="bg-white p-3 rounded-2xl shadow-lg max-w-6xl mx-auto sm:min-h-0 min-h-[100dvh] overflow-hidden flex sm:block items-center justify-center">
             <section className="py-2 sm:py-4">
               {/* Title & subtitle */}
-              <div className="text-center mb-6 sm:mb-10">
+              <div className="hidden sm:block text-center mb-6 sm:mb-10">
                 <h1 className="text-4xl font-bold text-blue-700">
                   Equipment Tracking
                 </h1>
