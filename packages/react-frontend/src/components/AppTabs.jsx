@@ -115,7 +115,7 @@ export default function AppTabs({ onReload }) {
                     </button>
                   </div>
 
-                  <span className="mb-2 sm:mb-0 mt-0 sm:mt-4 text-base sm:text-xl font-semibold text-gray-700">
+                  <span className="mb-2 sm:mb-0 mt-0 sm:mt-4 text-xl font-semibold text-gray-700">
                     Check In
                   </span>
                 </div>
