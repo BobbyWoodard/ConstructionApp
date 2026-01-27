@@ -5,7 +5,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    organization: { type: Schema.Types.ObjectId, ref: 'Organizations' }, // Reference to Organization model
+    organization: { type: Schema.Types.ObjectId, ref: 'Organizations', index: true }, // Reference to Organization model
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

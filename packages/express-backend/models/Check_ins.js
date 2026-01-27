@@ -6,7 +6,7 @@ const check_inSchema = new Schema({
     tool: { type: Schema.Types.ObjectId, ref: 'Tools', required: true }, // Reference to Tool model
     check_in_time: { type: Date, required: true, default: Date.now },
     check_out_time: { type: Date, required: false },
-    organization: { type: Schema.Types.ObjectId, ref: 'Organizations', required: true }, // Reference to Organization model
+    organization: { type: Schema.Types.ObjectId, ref: 'Organizations', required: true, index: true }, // Reference to Organization model
     comment: { type: String, required: false },
     location: { type: Schema.Types.ObjectId, ref: 'Locations', required: true }, // Reference to Location model
 }, { timestamps: true });
