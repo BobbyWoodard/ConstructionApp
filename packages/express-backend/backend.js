@@ -1,6 +1,10 @@
 // backend.js
+
 // Libraries and frameworks
 const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 import cors from "cors";
 
 // Routes
@@ -19,6 +23,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const port = 3000;
+
+// Connect to MongoDB
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Basic route
 app.get('/', (req, res) => {
