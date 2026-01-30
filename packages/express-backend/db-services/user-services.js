@@ -29,9 +29,13 @@ function updateUser(userId, updateData) {
 export async function registerUser(username, email, password) {
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const userData = { username, email, password: hashedPassword };
-  const existingUser = await getUserByUsername(userData.username);
-  if (existingUser) {
+  const existingUsername = await getUserByUsername(userData.username);
+  const existingEmail = await getUserByEmail(userData.email);
+  if (existingUsername) {
     throw new Error("Username already exists");
+  }
+  else if (existingEmail) {
+    throw new Error("Email already exists");
   }
   else {
     return createUser(userData);
