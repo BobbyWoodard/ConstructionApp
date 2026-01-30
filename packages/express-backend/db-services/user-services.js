@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import User from "../models/Users.js";
+const bcrypt = require('bcrypt');
+
+// constant values
+const saltRounds = 10;
 
 // Basic functions for user services
 function getUserByUsername(username) {
@@ -23,7 +27,8 @@ function updateUser(userId, updateData) {
 
 // Register a new user with only username, email, and password
 export async function registerUser(username, email, password) {
-  const userData = { username, email, password };
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const userData = { username, email, password: hashedPassword };
   const existingUser = await getUserByUsername(userData.username);
   if (existingUser) {
     throw new Error("Username already exists");
@@ -33,6 +38,23 @@ export async function registerUser(username, email, password) {
   }
 }
 
+export async function authenticateUser(username, password) {
+  return getUserByUsername(username).then(user => {
+    if (!user) {
+      throw new Error("User not found");
+    }
+    else {
+      return bcrypt.compare(password, user.password).then(match => {
+        if (!match) {
+          throw new Error("Invalid password");
+        }
+        else {
+          return user;
+        }
+      });
+    }
+  });
+}
 
 /*
 

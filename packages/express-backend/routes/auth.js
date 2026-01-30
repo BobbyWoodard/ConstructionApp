@@ -2,14 +2,20 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+import { authenticateUser } from '../db-services/user-services.js';
 
 // routes
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const username = req.body.username;
-  const user = { name: username };
+  const password = req.body.password;
 
   // authenticate user
+  try {
+    const user = await authenticateUser(username, password);
+  } catch (error) {
+    return res.status(401).json({ message: error.message });
+  }
 
   const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
   res.json({ token });
