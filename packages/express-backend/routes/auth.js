@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-import { authenticateUser } from '../db-services/user-services.js';
+const { authenticateUser, getUserByUsername } = require('../db-services/user-services.js');
 
 // routes
 
@@ -24,6 +24,10 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 
+router.get('/test', authenticateToken, (req, res) => {
+  res.json({ message: "You are authenticated!", user: req.user });
+});
+
 // middleware
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -33,7 +37,16 @@ function authenticateToken(req, res, next) {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
-    next();
+    getUserByUsername(req.user.username)
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ message: "User not found" });
+            }
+            req.user._id = user._id;
+            next();
+        }).catch(error => {
+            return res.status(500).send("Internal Server Error");
+        });
   });
 }
 

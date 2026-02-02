@@ -9,7 +9,9 @@ const check_inSchema = new Schema({
     organization: { type: Schema.Types.ObjectId, ref: 'Organizations', required: true, index: true }, // Reference to Organization model
     comment: { type: String, required: false },
     location: { type: Schema.Types.ObjectId, ref: 'Locations', required: true }, // Reference to Location model
-}, { timestamps: true });
+}, { timestamps: true }, {
+  collection: 'Check_ins' // Explicitly specify the collection name
+});
 
 const Check_ins = mongoose.model('Check_ins', check_inSchema);
 module.exports = Check_ins;

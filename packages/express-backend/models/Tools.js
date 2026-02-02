@@ -7,7 +7,9 @@ const toolSchema = new Schema({
     organization: { type: Schema.Types.ObjectId, ref: 'Organizations', index: true }, // Reference to Organization model
     type: { type: String, required: true }, // e.g., 'hand tool', 'power tool'
     QR: { type: String, required: false, unique: false, index: true }
-}, { timestamps: true });
+}, { timestamps: true }, {
+  collection: 'Tools' // Explicitly specify the collection name
+});
 
 const Tools = mongoose.model('Tool', toolSchema);
 module.exports = Tools;

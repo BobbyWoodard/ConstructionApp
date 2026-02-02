@@ -5,18 +5,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
-import cors from "cors";
+const cors = require("cors");
 
 // Routes
-const auth = require('../routes/auth.js');
-const users = require('../routes/users.js');
-const organizations = require('../routes/organizations.js');
-const sites = require('../routes/sites.js');
-const locations = require('../routes/locations.js');
-const tools = require('../routes/tools.js');
-const checkIns = require('../routes/check-ins.js');
-const checkOuts = require('../routes/check-outs.js');
-const lookUps = require('../routes/look-ups.js');
+const auth = require('./routes/auth.js');
+const users = require('./routes/users.js');
+const organizations = require('./routes/organizations.js');
+const sites = require('./routes/sites.js');
+const locations = require('./routes/locations.js');
+const tools = require('./routes/tools.js');
+const checkIns = require('./routes/check-ins.js');
+const checkOuts = require('./routes/check-outs.js');
+const lookUps = require('./routes/look-ups.js');
 
 // Initialize Express app
 const app = express();
@@ -24,8 +24,16 @@ app.use(cors());
 app.use(express.json());
 const port = 3000;
 
+// Error handling middleware for JSON parsing errors
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400) {
+    return res.sendStatus(400);
+  }
+  next(err);
+});
+
 // Connect to MongoDB
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 

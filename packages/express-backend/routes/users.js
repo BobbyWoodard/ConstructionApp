@@ -1,15 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const { authenticateToken } = require('./auth');
-import { registerUser } from '../db-services/user-services.js';
+const { registerUser } = require('../db-services/user-services.js');
 
 // routes
 
 // Create a new user
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', async (req, res) => {
+  
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
+
   try {
     const user = await registerUser(username, email, password);
     res.status(201).json(user);
@@ -24,6 +26,10 @@ router.post('/', authenticateToken, async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
   }
+
 });
+
+// register user with organization
+// not implemented yet
 
 module.exports = router

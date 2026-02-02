@@ -8,7 +8,9 @@ const look_upSchema = new Schema({
     organization: { type: Schema.Types.ObjectId, ref: 'Organizations', required: true, index: true }, // Reference to Organization model
     location: { type: Schema.Types.ObjectId, ref: 'Locations', required: true }, // Reference to Location model
     // Geo data could be added here in the future
-}, { timestamps: true });
+}, { timestamps: true }, {
+  collection: 'Look_ups' // Explicitly specify the collection name
+});
 
 const Look_ups = mongoose.model('Look_ups', look_upSchema);
 module.exports = Look_ups;

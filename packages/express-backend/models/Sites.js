@@ -6,7 +6,9 @@ const siteSchema = new Schema({
     organization: { type: Schema.Types.ObjectId, ref: 'Organizations', required: true }, // Reference to Organization model
     address: { type: String, required: false },
     // Geo data could be added here in the future
-}, { timestamps: true });
+}, { timestamps: true }, {
+  collection: 'Sites' // Explicitly specify the collection name
+});
 
 const Sites = mongoose.model('Sites', siteSchema);
 module.exports = Sites;

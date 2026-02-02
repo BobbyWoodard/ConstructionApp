@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import User from "../models/Users.js";
+const User = require("../models/Users.js");
 const bcrypt = require('bcrypt');
 
 // constant values
@@ -26,7 +25,7 @@ function updateUser(userId, updateData) {
 // Specific functions for api routes
 
 // Register a new user with only username, email, and password
-export async function registerUser(username, email, password) {
+async function registerUser(username, email, password) {
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const userData = { username, email, password: hashedPassword };
   const existingUsername = await getUserByUsername(userData.username);
@@ -42,7 +41,7 @@ export async function registerUser(username, email, password) {
   }
 }
 
-export async function authenticateUser(username, password) {
+async function authenticateUser(username, password) {
   return getUserByUsername(username).then(user => {
     if (!user) {
       throw new Error("User not found");
@@ -59,6 +58,12 @@ export async function authenticateUser(username, password) {
     }
   });
 }
+
+module.exports = {
+  registerUser,
+  authenticateUser,
+  getUserByUsername
+};
 
 /*
 
