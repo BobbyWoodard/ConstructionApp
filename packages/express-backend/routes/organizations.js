@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const { authenticateToken } = require('./auth');
 const { registerOrganization } = require('../db-services/organization-services.js');
-const { getUserByUsername } = require('../db-services/user-services.js');
 
 // routes
 
@@ -17,5 +16,9 @@ router.post('/', authenticateToken, (req, res) => {
             return res.status(500).send("Internal Server Error");
         });
 });
+
+// Register new user with organization
+
+// User accepts organization invite
 
 module.exports = router
